@@ -25,6 +25,9 @@ CREATE TABLE demo_replication (
 
 CREATE PUBLICATION cloud_pub FOR TABLE demo_replication;
 
+# Local schema create
+Logical replication does not replicate schema
+
 # Run Cloud SQL Auth Proxy
 ./cloud-sql-proxy <INSTANCE_CONNECTION_NAME> --port 5432
 
