@@ -1,4 +1,4 @@
-Create Cloud SQL instance
+Create Cloud SQL instance  
 gcloud sql instances create mk-postgres-remote \
   --database-version=POSTGRES_18 \
   --edition=ENTERPRISE \
