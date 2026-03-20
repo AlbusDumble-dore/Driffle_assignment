@@ -33,3 +33,10 @@ Logical replication does not replicate schema
 
 # Run Docker subscriber
 docker compose up -d
+
+# Cleanup
+cd ~/cloudsql-replica
+docker compose down -v
+
+gcloud sql instances patch mk-postgres-remote --no-deletion-protection
+gcloud sql instances delete mk-postgres-remote
