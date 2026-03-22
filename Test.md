@@ -7,12 +7,14 @@
         Verify locally.
 
 # Restart Recovery
-docker compose restart postgres-replica
-Insert new row → verify replication continues.
+        docker compose restart postgres-replica
+        docker compose logs -f postgres-replica
+        Insert new row → verify replication continues.
 
 # Volume Loss Recovery
-docker compose down -v
-docker compose up -d
-Drop slot
-Recreate subscription
-Verify data restored
+        docker compose down -v
+        psql "host=127.0.0.1 port=5432 dbname=postgres user=repl_user password=Admin@1234Replication sslmode=disable" \
+          -c "SELECT pg_drop_replication_slot('local_sub_01');"
+          
+        docker compose up -d
+        docker compose logs -f postgres-replica
