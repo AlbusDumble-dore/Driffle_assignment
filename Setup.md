@@ -11,13 +11,9 @@ gcloud sql instances create mk-postgres-remote \
   --database-flags=cloudsql.logical_decoding=on \  
   --root-password='Admin@123'  
 
-  gcloud sql users set-password postgres \  
-  --instance=mk-postgres-remote \  
-  --password=Admin@123  
-
 # Create replication user  
-gcloud sql users create repl_user \
-  --instance=mk-postgres-remote \
+gcloud sql users create repl_user \  
+  --instance=mk-postgres-remote \  
   --password='Admin@1234Replication'  
 
 # Setup schema + publication
