@@ -47,7 +47,7 @@ Mounted at: /var/lib/postgresql
 9. Cleanup.  
 
 
-# Test (Test.md)  
+# [Test](Test.md)
 1. Initial Sync
 2. Continuous Replication
 3. Restart Recovery
