@@ -1,10 +1,10 @@
 # Initial Sync
-INSERT INTO demo_replication (message) VALUES ('hello from cloud');  
-Check locally: psql -h 127.0.0.1 -p 5433 -U localadmin -d replica_db  
+        Cloud SQL: INSERT INTO public.demo_replication (message) VALUES ('Initial Sync');  
+        Verify locally: PGPASSWORD=localpass psql -h 127.0.0.1 -p 5433 -U localadmin -d replica_db -c "SELECT * FROM public.demo_replication ORDER BY id;"  
 
 # Continuous Replication
-INSERT INTO demo_replication (message) VALUES ('new data');
-Verify locally.
+        INSERT INTO public.demo_replication (message) VALUES ('New Data');
+        Verify locally.
 
 # Restart Recovery
 docker compose restart postgres-replica
