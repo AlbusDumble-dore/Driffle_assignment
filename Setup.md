@@ -44,9 +44,15 @@
         init/01-create-subscription.sh
         chmod +x init/
 
-# Cleanup
-pkill cloud-sql-proxy
+# Start Subscriber.
+        docker compose up -d
+        docker compose logs -f postgres-replica
 
+# Cleanup
+        docker compose down -v
+        pkill cloud-sql-proxy
+        gcloud sql instances patch mk-postgres-remote --no-deletion-protection
+        gcloud sql instances delete mk-postgres-remote
 cd ~/cloudsql-replica
 docker compose down -v
 
