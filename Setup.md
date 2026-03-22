@@ -12,9 +12,9 @@
         --root-password='Admin@123'  
 
 # Create replication user  
-gcloud sql users create repl_user \  
-  --instance=mk-postgres-remote \  
-  --password='Admin@1234Replication'  
+        gcloud sql users create repl_user \  
+          --instance=mk-postgres-remote \  
+          --password='Admin@1234Replication'  
 
 # Configure Primary Database - schema & publication
         ALTER ROLE repl_user WITH LOGIN REPLICATION;  
@@ -29,12 +29,13 @@ gcloud sql users create repl_user \
   
         CREATE PUBLICATION cloud_pub FOR TABLE public.demo_replication;  
 
-# Local schema create
-Logical replication does not replicate schema
-
-# Run Cloud SQL Auth Proxy
-./cloud-sql-proxy <INSTANCE_CONNECTION_NAME> --port 5432
-
+# Start the Cloud SQL Auth Proxy.
+        curl -o cloud-sql-proxy \
+          https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.21.1/cloud-sql-proxy.linux.amd64
+        
+        chmod +x cloud-sql-proxy
+        
+        ./cloud-sql-proxy gcp-keng01:us-central1:mk-postgres-remote --port 5432
 # Run Docker subscriber
 docker compose up -d
 
