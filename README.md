@@ -37,17 +37,17 @@ Mounted at: /var/lib/postgresql
      Remote replication slot still exists, Drop stale replication slot.
 
 
-# Setup  
+# Setup (Setup.md)  
 1. GCP Cloud Shell for local DB - Preinstalled docker.
-2. Create Cloud SQL primary instance.
-3. Configure Primary Database - schema & publication
-4. Start the Cloud SQL Auth Proxy
-5. Configure Docker Subscriber - .env, docker-compose.yml, init scripts
-6. Start Subscriber
-9. Cleanup
+2. Create Cloud SQL primary instance & relication user.  
+3. Configure Primary Database - schema & publication.  
+4. Start the Cloud SQL Auth Proxy.  
+5. Configure Docker Subscriber - .env, docker-compose.yml, init scripts.  
+6. Start Subscriber.  
+9. Cleanup.  
 
 
-# Test
+# Test (Test.md)  
 1. Initial Sync
 2. Continuous Replication
 3. Restart Recovery
