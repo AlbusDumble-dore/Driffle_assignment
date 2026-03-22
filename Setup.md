@@ -16,16 +16,18 @@ gcloud sql users create repl_user \
   --instance=mk-postgres-remote \  
   --password='Admin@1234Replication'  
 
-# Setup schema + publication
-ALTER ROLE repl_user WITH LOGIN REPLICATION;  
-
-CREATE TABLE demo_replication (  
-  id BIGSERIAL PRIMARY KEY,
-  message TEXT,
-  created_at TIMESTAMPTZ DEFAULT now()
-);
-
-CREATE PUBLICATION cloud_pub FOR TABLE demo_replication;
+# Configure Primary Database - schema & publication
+        ALTER ROLE repl_user WITH LOGIN REPLICATION;  
+  
+        CREATE TABLE IF NOT EXISTS public.demo_replication (  
+          id BIGSERIAL PRIMARY KEY,  
+          message TEXT NOT NULL,  
+          created_at TIMESTAMPTZ NOT NULL DEFAULT now()  
+        );  
+  
+        GRANT SELECT ON TABLE public.demo_replication TO repl_user;  
+  
+        CREATE PUBLICATION cloud_pub FOR TABLE public.demo_replication;  
 
 # Local schema create
 Logical replication does not replicate schema
