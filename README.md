@@ -37,7 +37,7 @@ Mounted at: /var/lib/postgresql
      Remote replication slot still exists, Drop stale replication slot.
 
 
-# Setup (Setup.md)  
+# [Setup](Setup.md)  
 1. GCP Cloud Shell for local DB - Preinstalled docker.
 2. Create Cloud SQL primary instance & relication user.  
 3. Configure Primary Database - schema & publication.  
