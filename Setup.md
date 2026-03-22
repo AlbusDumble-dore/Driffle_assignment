@@ -1,13 +1,19 @@
-# Create Cloud SQL instance  
-gcloud sql instances create mk-postgres-remote \
-  --database-version=POSTGRES_18 \
-  --edition=ENTERPRISE \
-  --cpu=2 \
-  --memory=8GB \
-  --region=us-central1 \
-  --availability-type=ZONAL \
-  --storage-size=10GB \
-  --database-flags=cloudsql.logical_decoding=on
+# Create Cloud SQL primary instance  
+gcloud sql instances create mk-postgres-remote \  
+  --database-version=POSTGRES_18 \  
+  --edition=ENTERPRISE \  
+  --cpu=2 \  
+  --memory=8GB \  
+  --region=us-central1 \  
+  --availability-type=ZONAL \  
+  --storage-size=10GB \  
+  --storage-type=SSD \  
+  --database-flags=cloudsql.logical_decoding=on \  
+  --root-password='Admin@123'  
+
+  gcloud sql users set-password postgres \  
+  --instance=mk-postgres-remote \  
+  --password=Admin@123  
 
 # Create replication user  
 gcloud sql users create repl_user \
@@ -35,6 +41,8 @@ Logical replication does not replicate schema
 docker compose up -d
 
 # Cleanup
+pkill cloud-sql-proxy
+
 cd ~/cloudsql-replica
 docker compose down -v
 
