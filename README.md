@@ -8,10 +8,12 @@ Replication from a managed cloud database (GCP Cloud SQL) to a local PostgreSQL 
 
 # Architecture
 GCP Cloud SQL (Primary) - PostgreSQL 18 - Publication: cloud_pub  
-→    (Logical Replication)  
-Cloud SQL Auth Proxy - localhost:5432
-→  
+▼    (Logical Replication)  
+Cloud SQL Auth Proxy - localhost:5432  
+▼    
 Docker Container - PostgreSQL Subscriber - Subscription: local_sub_01 - Port: 5433 - Volume: pgdata  
+
+GCP Cloud SQL (Primary - PostgreSQL 18) │ │ Logical Replication (Publication: cloud_pub)  Cloud SQL Auth Proxy (127.0.0.1:5432) │ ▼ Docker Container (PostgreSQL Subscriber) - Subscription: local_sub_01 - Port: 5433 - Volume: pgdata
 
 
 # Replication Method
