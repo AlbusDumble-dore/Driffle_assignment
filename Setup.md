@@ -53,8 +53,3 @@
         pkill cloud-sql-proxy
         gcloud sql instances patch mk-postgres-remote --no-deletion-protection
         gcloud sql instances delete mk-postgres-remote
-cd ~/cloudsql-replica
-docker compose down -v
-
-gcloud sql instances patch mk-postgres-remote --no-deletion-protection
-gcloud sql instances delete mk-postgres-remote
