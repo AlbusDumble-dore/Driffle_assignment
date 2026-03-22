@@ -36,8 +36,13 @@
         chmod +x cloud-sql-proxy
         
         ./cloud-sql-proxy gcp-keng01:us-central1:mk-postgres-remote --port 5432
-# Run Docker subscriber
-docker compose up -d
+        
+# Configure Docker Subscriber
+        .env
+        docker-compose.yml
+        init/00-schema.sql
+        init/01-create-subscription.sh
+        chmod +x init/
 
 # Cleanup
 pkill cloud-sql-proxy
